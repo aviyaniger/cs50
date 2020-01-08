@@ -16,10 +16,10 @@ int main(void)
     for (int i = 0; i < height; i++)
     {
         space = height - i + 1;
-            for (int k = 0; k < space; k++)
-            {
-                printf(" ");
-            }
+        for (int k = 0; k < space; k++)
+        {
+            printf(" ");
+        }
         for (int j = 0; j <= i; j++)
         {
             printf("#");
