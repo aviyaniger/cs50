@@ -15,7 +15,7 @@ int main(void)
     //create pyramid
     for (int i = 0; i < height; i++)
     {
-        space = height - i;
+        space = height - i - 1;
         for (int k = 0; k < space; k++)
         {
             printf(" ");
