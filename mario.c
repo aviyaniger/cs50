@@ -14,7 +14,7 @@ int main(void)
     int space;
     for (int i = 1; i <= height; i++)
     {
-        //first spaces
+        //spaces
         space = height - i;
         for (int j = 0; j < space; j++)
         {
@@ -31,11 +31,6 @@ int main(void)
         for (int j = 0; j < i; j++)
         {
             printf("#");
-        }
-        //second spaces
-        for (int j = 0; j < space; j++)
-        {
-            printf(" ");
         }
         printf("\n");
     }
