@@ -42,7 +42,7 @@ int main(void)
         {
             type = "VISA";
         }
-        else if (number >= 1000000000000000 && number < 10000000000000000)
+        else if (number >= 5100000000000000 && number < 5600000000000000)
         {
             type = "MASTERCARD";
         }
