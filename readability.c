@@ -12,13 +12,13 @@ int main(void)
     string text = get_string("Text: ");
 
     // average letters per 100 words
-    float L = round((float) count_letters(text) * 100.00 / (float) count_words(text));
+    float L = (float) count_letters(text) * 100.00 / (float) count_words(text);
 
     // average sentences per 100 words
-    float S = round((float) count_sentences(text) * 100.00 / (float) count_words(text));
+    float S = (float) count_sentences(text) * 100.00 / (float) count_words(text);
 
     // find grade
-    float index = (0.0588 * L) - (0.296 * S) - 15.8;
+    float index = round((0.0588 * L) - (0.296 * S) - 15.8);
     if (index < 1)
     {
         printf("Before Grade 1\n");
