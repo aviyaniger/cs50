@@ -8,8 +8,6 @@ char convert(char x, int k);
 
 int main(int argc, string argv[])
 {
-    int len = strlen(argv[1]);
-
     //check for existence of argument
     if (argc != 2)
     {
@@ -19,6 +17,7 @@ int main(int argc, string argv[])
     //check for validity of argument
     else
     {
+        int len = strlen(argv[1]);
         for (int i = 0; i < len; i++)
         {
             if (!isdigit(argv[1][i]))
