@@ -34,10 +34,11 @@ int main(int argc, string argv[])
 
     //prompt user for plaintext
     string plaintext = get_string("plaintext: ");
+    int text_len = strlen(plaintext);
 
     //convert plaintext to ciphertext
     printf("ciphertext: ");
-    for (int i = 0; i < len; i++)
+    for (int i = 0; i < text_len; i++)
     {
         printf("%c", convert(plaintext[i], key));
     }
