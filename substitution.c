@@ -49,7 +49,7 @@ int main(int argc, string argv[])
     printf("ciphertext: ");
     for (int i = 0; i < text_len; i++)
     {
-        int k = (int) plaintext[i] - 97;
+        int k = (int) tolower(plaintext[i]) - 97;
         printf("%c", convert(plaintext[i], argv[1][k]));
     }
     printf("\n");
