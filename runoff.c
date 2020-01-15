@@ -132,9 +132,9 @@ bool vote(int voter, int rank, string name)
     // if yes - update preference for voter and return true
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(name, candidates[i].name))
+        if (strcmp(name, candidates[i].name) == 0)
         {
-            preferences[voter][rank] = i;
+            preferences[voter][rank] = i + 1;
             return true;
         }
     }
@@ -146,14 +146,17 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    // loop through first preference votes and increment candidate score
-    for (int i = 0; i < voter_count; i++)
+    // loop through the candidates and check who is eliminated
+    for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
-        if (strcmp(candidates[preferences[i][0]].name, candidates[j].name) == 0)
+        int best_choice = i;
+        // if eliminated check next choice
+        while (candidates[best_choice].eliminated)
         {
-            candidates[j].votes++;
+            best_choice += 1;
         }
+        // increment votes
+        candidates[best_choice].votes++;
     }
     return;
 }
@@ -178,7 +181,7 @@ int find_min(void)
     int lowest = voter_count;
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes <= lowest)
+        if (candidates[i].votes <= lowest && !candidates[i].eliminated)
         {
             lowest = candidates[i].votes;
         }
@@ -191,7 +194,7 @@ bool is_tie(int min)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes != min)
+        if (candidates[i].votes > min && !candidates[i].eliminated)
         {
             return false;
         }
@@ -207,20 +210,7 @@ void eliminate(int min)
     {
         if (candidates[i].votes == min)
         {
-            // eliminate instances of candidate for each voter
-            for (int j = 0; j < voter_count; j++)
-            {
-                for (int k = 0; k < candidate_count; k++)
-                {
-                    if (strcmp(candidates[preferences[j][k]].name, candidates[i].name) == 0)
-                    {
-                        for (int l = k; l < candidate_count; l++)
-                        {
-                            preferences[j][l] = preferences[j][l + 1];
-                        }
-                    }
-                }
-            }
+            candidates[i].eliminated = true;
         }
     }
     return;
