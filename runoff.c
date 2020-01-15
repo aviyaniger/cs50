@@ -147,13 +147,15 @@ bool vote(int voter, int rank, string name)
 void tabulate(void)
 {
     // loop through the candidates and check who is eliminated
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < voter_count; i++)
     {
-        int best_choice = i;
+        int next = 0;
+        int best_choice = preferences[i][next];
         // if eliminated check next choice
         while (candidates[best_choice].eliminated)
         {
-            best_choice += 1;
+            best_choice = preferences[i][next];
+            next++;
         }
         // increment votes
         candidates[best_choice].votes++;
