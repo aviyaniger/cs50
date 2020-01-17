@@ -100,13 +100,14 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
+    int place = 0;
     // check if name is a match for a candidate
     for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(name, candidates[i]) == 0)
         {
             // update ranks array to add candidate index
-            ranks[i] = rank;
+            ranks[rank] = i;
             return true;
         }
     }
