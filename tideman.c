@@ -120,10 +120,10 @@ void record_preferences(int ranks[])
     // loop through ranks
     for (int i = 0; i < candidate_count; i++)
     {
-        int j = i;
+        int j = i + 1;
         // update preferences array to match ranks array
         // looping through remaining candidates in ranks array
-        while (j < candidate_count)
+        while (j <= candidate_count)
         {
             preferences[ranks[i]][ranks[j]]++;
             j++;
