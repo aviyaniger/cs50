@@ -100,7 +100,6 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    int place = 0;
     // check if name is a match for a candidate
     for (int i = 0; i < candidate_count; i++)
     {
@@ -135,6 +134,7 @@ void record_preferences(int ranks[])
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
+    int place = 0;
     // loop through the candidates
     for (int i = 0; i < candidate_count; i++)
     {
@@ -144,8 +144,9 @@ void add_pairs(void)
             // add to pairs array if someone won
             if (preferences[i][j] > preferences[j][i])
             {
-                pairs[i].winner++;
-                pairs[j].loser++;
+                pairs[place].winner = i;
+                pairs[place].loser = j;
+                place++;
                 pair_count++;
             }
         }
