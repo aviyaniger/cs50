@@ -156,9 +156,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 int pixBlue = original_image[i+1][j+1].rgbtBlue;
                 add_colors(&pixRed, &pixGreen, &pixBlue, &red, &green, &blue, &pixnum);
             }
-            image[i][j].rgbtRed = round(red / pixnum);
-            image[i][j].rgbtGreen = round(green / pixnum);
-            image[i][j].rgbtBlue = round(blue / pixnum);
+            image[i][j].rgbtRed = (int) round((float) red / (float) pixnum);
+            image[i][j].rgbtGreen = (int) round((float) green / (float) pixnum);
+            image[i][j].rgbtBlue = (int) round((float) blue / (float) pixnum);
         }
     }
     return;
