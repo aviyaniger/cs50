@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     }
     FILE *g = NULL;
     int count = 0;
-    char file_name[4];
+    char file_name[40];
     memset(file_name, 0, sizeof(file_name));
     char buffer[512];
     do
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
             }
 
             // add to count for file name
-            sprintf(file_name, "%3d", count);
+            sprintf(file_name, "%03i.jpg", count);
             g = fopen(file_name, "a");
             if (g == NULL)
             {
@@ -46,7 +46,9 @@ int main(int argc, char *argv[])
                 return 3;
             }
             fwrite(buffer, 512, 1, g);
+            printf("count before: %i\n", count);
             count++;
+            printf("count after: %i\n", count);
         }
         // ignore data if beginning is not beginning of jpg
         else if (count != 0)
