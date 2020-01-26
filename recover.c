@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     char file_name[40];
     memset(file_name, 0, sizeof(file_name));
     char buffer[512];
-    do
+    while (!feof(f))
     {
         fread(buffer, 512, 1, f);
 
@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
             fwrite(buffer, 512, 1, g);
         }
     }
-    while (!feof(f));
 
     fclose(f);
 
