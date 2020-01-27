@@ -58,6 +58,11 @@ int main(int argc, char *argv[])
     }
 
     fclose(f);
+    if (g != NULL)
+    {
+        fclose(g);
+        g = NULL;
+    }
 
     return 0;
 }
