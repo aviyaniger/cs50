@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     }
     FILE *g = NULL;
     int count = 0;
-    char file_name[40];
+    char file_name[10];
     memset(file_name, 0, sizeof(file_name));
     char buffer[512];
     while (!feof(f))
@@ -46,9 +46,7 @@ int main(int argc, char *argv[])
                 return 3;
             }
             fwrite(buffer, 512, 1, g);
-            printf("count before: %i\n", count);
             count++;
-            printf("count after: %i\n", count);
         }
         // ignore data if beginning is not beginning of jpg
         else if (count != 0)
@@ -56,8 +54,6 @@ int main(int argc, char *argv[])
             fwrite(buffer, 512, 1, g);
         }
     }
-
-    fwrite(buffer, 512, 1, g);
 
     fclose(f);
     if (g != NULL)
