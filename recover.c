@@ -57,35 +57,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    fread(buffer, 512, 1, f);
-
-        // check if new jpg
-        if (buffer[0] == '\xFF' && buffer[1] == '\xD8' && buffer[2] == '\xFF' && (buffer[3] & '\xF0') == '\xE0')
-        {
-            if (g != NULL)
-            {
-                fclose(g);
-                g = NULL;
-            }
-
-            // add to count for file name
-            sprintf(file_name, "%03i.jpg", count);
-            g = fopen(file_name, "a");
-            if (g == NULL)
-            {
-                printf("failed to open %s\n", file_name);
-                return 3;
-            }
-            fwrite(buffer, 512, 1, g);
-            printf("count before: %i\n", count);
-            count++;
-            printf("count after: %i\n", count);
-        }
-        // ignore data if beginning is not beginning of jpg
-        else if (count != 0)
-        {
-            fwrite(buffer, 512, 1, g);
-        }
+    fwrite(buffer, 512, 1, g);
 
     fclose(f);
     if (g != NULL)
