@@ -24,9 +24,10 @@ int main(int argc, char *argv[])
     char file_name[10];
     memset(file_name, 0, sizeof(file_name));
     char buffer[512];
+    int block_size;
     while (!feof(f))
     {
-        fread(buffer, 1, 512, f);
+        block_size = fread(buffer, 1, 512, f);
 
         // check if new jpg
         if (buffer[0] == '\xFF' && buffer[1] == '\xD8' && buffer[2] == '\xFF' && (buffer[3] & '\xF0') == '\xE0')
@@ -51,7 +52,15 @@ int main(int argc, char *argv[])
         // ignore data if beginning is not beginning of jpg
         else if (count != 0)
         {
-            fwrite(buffer, 1, 512, g);
+            // check if writing last block
+            if (block_size < 512)
+            {
+                fwrite(buffer, 1, block_size, g);
+            }
+            else
+            {
+                fwrite(buffer, 1, 512, g);
+            }
         }
     }
 
