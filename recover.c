@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     char buffer[512];
     while (!feof(f))
     {
-        fread(buffer, 512, 1, f);
+        fread(buffer, 1, 512, f);
 
         // check if new jpg
         if (buffer[0] == '\xFF' && buffer[1] == '\xD8' && buffer[2] == '\xFF' && (buffer[3] & '\xF0') == '\xE0')
@@ -45,17 +45,18 @@ int main(int argc, char *argv[])
                 printf("failed to open %s\n", file_name);
                 return 3;
             }
-            fwrite(buffer, 512, 1, g);
+            fwrite(buffer, 1, 512, g);
             count++;
         }
         // ignore data if beginning is not beginning of jpg
         else if (count != 0)
         {
-            fwrite(buffer, 512, 1, g);
+            fwrite(buffer, 1, 512, g);
         }
     }
 
     fclose(f);
+
     if (g != NULL)
     {
         fclose(g);
@@ -64,6 +65,4 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-
 
